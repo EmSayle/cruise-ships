@@ -1,4 +1,4 @@
-const Port = require('../src/port')
+const Port = require('../src/port');
 
 describe('Port', () => {
   it('returns a new port object', () => {

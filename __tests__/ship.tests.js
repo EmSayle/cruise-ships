@@ -1,3 +1,6 @@
+/* globals describe it expect */
+
+const Port = require('../src/port');
 const Ship = require('../src/ship');
 
 describe('Ship', () => {
@@ -8,13 +11,27 @@ describe('Ship', () => {
 
 describe('Ship', () => {
   it('sets the ships starting port', () => {
-    const ship = new Ship('Lisbon');
-    expect(ship.startingPort).toEqual('Lisbon');
+    const port = new Port('Lisbon');
+    const ship = new Ship(port);
+    expect(ship.currentPort).toEqual(port);
   });
 });
 
-describe('ship set sail method', () => {
-  const ship = new Ship('Lisbon');
-  ship.setSail();
-  expect(ship.startingPort).toBeFalsy();
+describe('Set sail method', () => {
+  it('tests the shipSail method', () => {
+    const port = new Port('Lisbon');
+    const ship = new Ship(port);
+    ship.setSail();
+    expect(ship.currentPort).toBeFalsy();
+  });
+});
+
+describe('Dock method', () => {
+  it('tests the dock method', () => {
+    const port = new Port('Lisbon');
+    const ship = new Ship(port);
+    const seville = new Port('Seville');
+    ship.dock(seville);
+    expect(ship.currentPort).toEqual(seville);
+  });
 });
